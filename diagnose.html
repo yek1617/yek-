@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>备考站 · 环境诊断</title>
+<style>
+body{font-family:-apple-system,"PingFang SC",sans-serif;margin:0;padding:16px;background:#F6F4EF;color:#1C1C1E;font-size:15px;line-height:1.7}
+h1{font-size:18px;margin:0 0 12px}
+.card{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px;border:1px solid #E3DFD6}
+.ok{color:#2F6B4F;font-weight:700}
+.bad{color:#B23A2E;font-weight:700}
+.k{color:#6B6B70;font-size:13px}
+code{background:#F0EEE8;padding:1px 5px;border-radius:4px;font-size:13px;word-break:break-all}
+</style></head><body>
+<h1>环境诊断</h1>
+<div class="card" id="r">检测中…</div>
+<div class="card">
+<div class="k">把这个页面截图发给我，就能定位为什么打不开。</div>
+</div>
+<script>
+var out=[];
+function row(name,val,ok){out.push('<div>'+name+'：'+(ok===true?'<span class="ok">✓</span> ':ok===false?'<span class="bad">✗</span> ':'')+'<code>'+val+'</code></div>');}
+try{
+  row('脚本执行','正常',true);
+  row('协议',location.protocol+(location.protocol==='file:'?'（本地文件，iOS 最容易出问题）':''));
+  row('地址',location.href.slice(0,80));
+  row('浏览器',navigator.userAgent.slice(0,110));
+  row('屏幕',window.innerWidth+'×'+window.innerHeight+' @'+ (window.devicePixelRatio||1));
+  var ls='未知';
+  try{ localStorage.setItem('t','1'); localStorage.removeItem('t'); ls='可用'; }catch(e){ ls='被禁止（'+e.name+'）'; }
+  row('localStorage',ls,ls==='可用');
+  var mq='不支持';
+  try{ mq = window.matchMedia ? '支持' : '不支持'; }catch(e){ mq='报错'; }
+  row('matchMedia',mq);
+  row('fetch', (typeof fetch==='function')?'支持':'不支持');
+  row('BigInt/可选链', (function(){try{ eval('1'); return '正常'; }catch(e){return '异常';}})());
+  document.getElementById('r').innerHTML=out.join('');
+}catch(e){
+  document.getElementById('r').innerHTML='<b class="bad">脚本本身报错：</b><br>'+e.message+'<br><br>'+out.join('');
+}
+</script>
+</body></html>

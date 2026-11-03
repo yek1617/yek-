@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#16324F">
+<title>yek一战成硕备考站</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="备考站">
+<meta name="application-name" content="备考站">
+<meta name="format-detection" content="telephone=no">
+<style>
+:root{
+  --paper:#F6F4EF; --card:#FFFFFF; --ink:#1C1C1E; --sub:#6B6B70;
+  --navy:#16324F; --red:#B23A2E; --green:#2F6B4F; --line:#E3DFD6;
+  --chip:#F6F4EF; --shadow:0 6px 24px rgba(28,28,30,.08);
+  --fs:16px; --r:22px;
+}
+[data-theme="dark"]{
+  --paper:#14161A; --card:#1C1F24; --ink:#E8E6E1; --sub:#9A9AA1;
+  --navy:#8FB3D9; --red:#E0705F; --green:#6FBF95; --line:#2C3037;
+  --chip:#23272E; --shadow:0 6px 24px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:var(--fs);line-height:1.65;-webkit-font-smoothing:antialiased}
+body{padding-bottom:88px;padding-top:env(safe-area-inset-top);-webkit-text-size-adjust:100%}
+button,input,textarea,select{-webkit-appearance:none}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 8px}
+.hd{display:flex;align-items:center;justify-content:space-between;margin:6px 0 14px}
+.hd h1{font-size:17px;margin:0;letter-spacing:.2px;color:var(--navy);font-weight:700}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+  display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--sub);cursor:pointer}
+.icon-btn:active{transform:scale(.95)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.sec-title{font-size:13px;font-weight:700;color:var(--navy);margin:20px 0 8px}
+.muted{color:var(--sub);font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 14px;
+  font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--sub);cursor:pointer}
+.pill.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn{display:block;width:100%;border:0;border-radius:999px;padding:15px 0;font-size:16px;font-weight:700;
+  background:var(--navy);color:#fff;cursor:pointer;box-shadow:var(--shadow);font-family:inherit}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy);box-shadow:none}
+.btn.red{background:var(--red)}
+.btn:disabled{opacity:.45}
+
+/* 首页 */
+.cd{position:relative;background:var(--navy);border-radius:26px;padding:20px 22px;color:#fff;overflow:hidden}
+.cd .lab{font-size:12px;opacity:.72;letter-spacing:.5px}
+.cd .d{font-size:58px;font-weight:800;line-height:1.05;letter-spacing:-1px;margin-top:6px}
+.cd .d small{font-size:17px;font-weight:600;opacity:.8;margin-left:6px}
+.cd .sub{font-size:12px;opacity:.72;margin-top:8px}
+.stk{position:absolute;right:-6px;top:8px;width:92px;height:92px;border-radius:22px;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);transform:rotate(-8deg);border:3px solid #fff}
+.stk .e{font-size:30px;line-height:1}
+.stk .t{font-size:8.5px;color:#4a4a4a;margin-top:3px;text-align:center;padding:0 4px;line-height:1.15}
+.qc{margin-top:14px;padding:16px 18px;position:relative}
+.qc .tag{font-size:10px;letter-spacing:1.5px;color:var(--sub)}
+.qc .en{margin:6px 42px 0 0;font-size:14.5px;line-height:1.55}
+.qc .zh{margin-top:4px;font-size:13px;color:var(--sub)}
+.qc .by{margin-top:2px;font-size:11px;color:var(--sub)}
+.mini-pill{position:absolute;right:12px;top:12px;font-size:11px;padding:3px 10px;border-radius:999px;
+  background:var(--chip);color:var(--sub);border:1px solid var(--line);cursor:pointer}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.g3{background:var(--chip);border-radius:16px;padding:12px 0;text-align:center}
+.g3 b{display:block;font-size:19px;line-height:1.2}
+.g3 span{font-size:11px;color:var(--sub)}
+.task{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:14px}
+.dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.bar{height:8px;border-radius:999px;background:var(--chip);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--green);border-radius:999px}
+
+/* 答题 */
+.ptop{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.dots{display:flex;gap:3px;margin:8px 0 14px}
+.dots i{flex:1;height:3px;border-radius:2px;background:var(--line)}
+.dots i.done{background:var(--navy)}
+.dots i.cur{background:var(--red)}
+.chips{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.chip{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
+.chip.cat{color:var(--red);border-color:currentColor;background:rgba(178,58,46,.07)}
+.qtext{font-size:18px;font-weight:600;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;border:1.5px solid var(--line);
+  background:var(--card);margin-bottom:10px;cursor:pointer;transition:.12s}
+.opt:active{transform:scale(.995)}
+.opt .k{width:24px;height:24px;border-radius:50%;background:var(--chip);color:var(--sub);
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.opt .v{font-size:15px;line-height:1.5;white-space:pre-wrap}
+.opt.sel{border-color:var(--red);background:rgba(178,58,46,.06)}
+.opt.sel .k{background:var(--red);color:#fff}
+.opt.right{border-color:var(--green);background:rgba(47,107,79,.08)}
+.opt.right .k{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:rgba(178,58,46,.08)}
+.opt.multi .k{border-radius:7px}
+.ta{width:100%;min-height:120px;border:1.5px solid var(--line);border-radius:16px;padding:14px;
+  font-family:inherit;font-size:15px;background:var(--card);color:var(--ink);resize:vertical;line-height:1.7}
+.ana{margin-top:14px;padding:16px 18px;border-left:4px solid var(--green);position:relative;animation:in .18s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ana.bad{border-left-color:var(--red)}
+.ana .res{font-size:14px;font-weight:700;color:var(--green);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.ana.bad .res{color:var(--red)}
+.ana .res em{font-style:normal;font-weight:400;font-size:12px;color:var(--sub)}
+.ana h4{font-size:12px;margin:14px 0 6px;color:var(--navy);letter-spacing:.5px}
+.ana p{margin:4px 0;font-size:13.5px;line-height:1.7;white-space:pre-wrap}
+.ana ul{margin:4px 0;padding-left:18px}
+.ana li{font-size:13.5px;line-height:1.7;margin:2px 0}
+.optnote{margin-top:6px}
+.optrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.optrow:last-child{border:0}
+.optrow .lt{width:22px;height:22px;border-radius:50%;flex:0 0 auto;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;color:#fff}
+.optrow.r .lt{background:var(--green)}
+.optrow.w .lt{background:#B0ADA6}
+.optrow .ot{font-size:13px;line-height:1.6}
+.optrow .ot em{font-style:normal;color:var(--sub)}
+.resume{margin-top:14px;padding:14px 16px;border-radius:18px;background:rgba(22,50,79,.06);
+  border:1px solid rgba(22,50,79,.12)}
+.resume .rl{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:700;color:var(--navy)}
+.resume .rl span{font-size:11.5px;font-weight:400;color:var(--sub)}
+.warnbox{margin:8px 0;padding:10px 12px;border-radius:12px;background:rgba(178,58,46,.08);
+  color:var(--red);font-size:12.5px;line-height:1.6}
+.gbar{height:7px;border-radius:999px;background:var(--chip);overflow:hidden;margin:6px 0 4px}
+.gbar i{display:block;height:100%;background:var(--green);border-radius:999px}
+.kwline{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.kw{font-size:12px;padding:3px 10px;border-radius:999px;background:rgba(47,107,79,.1);color:var(--green)}
+.mnem{margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(22,50,79,.06);
+  font-size:13px;line-height:1.7;color:var(--navy)}
+.confbox{margin:8px 0;padding:10px 12px;border-radius:12px;background:var(--chip)}
+.confbox .cq{font-size:12.5px;line-height:1.6}
+.confbox .cw{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.6}
+.trap{border-left:3px solid #D6AA50;padding-left:10px;margin-top:12px;color:#8a6a20;font-size:13px}
+[data-theme="dark"] .trap{color:#D8B877}
+
+/* 错题 / 列表 */
+.item{padding:14px 16px;margin-bottom:10px}
+.item .top{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--sub);margin-bottom:6px}
+.item .txt{font-size:14px;line-height:1.6}
+.flag{font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(178,58,46,.1);color:var(--red)}
+.flag.g{background:rgba(47,107,79,.12);color:var(--green)}
+
+/* tabbar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--paper) 70%,transparent);z-index:20}
+.tabbar .in{max-width:720px;margin:0 auto;background:var(--chip);border-radius:999px;display:flex;
+  padding:6px;box-shadow:var(--shadow)}
+.tab{flex:1;text-align:center;padding:6px 0;border-radius:999px;font-size:11px;color:var(--sub);cursor:pointer}
+.tab b{display:block;font-size:17px;line-height:1.2;font-weight:400}
+.tab.on{background:var(--navy);color:#fff}
+.hide{display:none!important}
+.sheet{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.35);z-index:50;display:flex;align-items:flex-end}
+.sheet .bd{width:100%;max-width:720px;margin:0 auto;background:var(--card);border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row:last-child{border:0}
+.seg{display:flex;gap:6px}
+.seg span{font-size:12px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);cursor:pointer}
+.seg span.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:8px}
+.bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+.bars .b i{width:100%;background:var(--navy);border-radius:6px 6px 2px 2px;min-height:3px;display:block}
+.bars .b span{font-size:10px;color:var(--sub)}
+.wk{margin-bottom:12px}
+.wk .h{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.wk .t{height:7px;border-radius:999px;background:var(--chip);overflow:hidden}
+.wk .t i{display:block;height:100%;border-radius:999px}
+.empty{text-align:center;padding:40px 10px;color:var(--sub);font-size:14px}
+#errbar{position:fixed;left:0;right:0;top:0;z-index:99;background:#B23A2E;color:#fff;
+  font-size:12px;line-height:1.5;padding:8px 14px;display:none;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div id="errbar"></div>
+<div id="app" class="wrap"></div>
+<nav id="tabbar" class="tabbar"><div class="in"></div></nav>
+<div id="sheet"></div>
+
+<script src="data/kp.js"></script>
+<script src="data/00-plan.js"></script>
+<script src="data/quotes.js"></script>
+<script src="data/detail.js"></script>
+<script src="data/qdetail.js"></script>
+<script src="manifest.js"></script>
+<script src="js/core.js"></script>
+<script>
+/* ===================== 启动看门狗（先于一切执行） ===================== */
+window.__YEK_BOOTED = false;
+window.onerror = function (msg, src, line) {
+  const b = document.getElementById('errbar');
+  if (b) { b.style.display = 'block'; b.textContent = '出错了：' + msg + '（第 ' + line + ' 行）'; }
+};
+setTimeout(function () {
+  if (window.__YEK_BOOTED) return;
+  const app = document.getElementById('app');
+  if (!app || app.innerHTML.trim().length > 30) return;
+  const isFile = location.protocol === 'file:';
+  app.innerHTML = '<div style="padding:18px;line-height:1.8;font-size:14px">' +
+    '<b style="color:#B23A2E">页面没有启动起来</b><br>' +
+    '常见原因：这个浏览器禁止执行本地文件里的脚本（iOS 的「文件」预览就是这样）。<br><br>' +
+    '解决办法：<br>① 用电脑上的地址在手机浏览器打开：<b>http://电脑IP:8765</b><br>' +
+    '② 或在「文件」里长按这个 html → 共享 → 用 Safari 打开<br>' +
+    '③ iOS 推荐直接访问 http 地址，而不是本地文件' +
+    (isFile ? '<br><br><span style="color:#888">当前是 file:// 方式打开，最容易出问题。</span>' : '') +
+    '</div>';
+}, 4000);
+
+/* ===================== 存储 ===================== */
+const KEY = 'yek.v2';
+const DEF = { v: 2, q: {}, wrong: {}, log: [], days: {}, settings: { theme: 'auto', fs: 16 } };
+let MEM = null;
+function loadStore() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (s && s.v === 2) { s.settings = Object.assign({}, DEF.settings, s.settings || {}); return s; }
+  } catch (e) { }
+  return JSON.parse(JSON.stringify(DEF));
+}
+let store = loadStore();
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { MEM = store; }
+}
+/* ===================== 练习存档（退出可续） ===================== */
+const SKEY = 'yek.session';
+function saveSession() {
+  if (!S.sess || !S.sess.qs || !S.sess.qs.length) return;
+  const ss = S.sess;
+  const data = {
+    ids: ss.qs.map(q => q.id), i: ss.i, res: ss.res, multi: ss.multi || [],
+    tAcc: Date.now() - ss.t0, label: ss.label || '', ts: Date.now()
+  };
+  try { localStorage.setItem(SKEY, JSON.stringify(data)); } catch (e) { }
+}
+function loadSession() {
+  try {
+    const d = JSON.parse(localStorage.getItem(SKEY) || 'null');
+    if (d && d.ids && d.ids.length) return d;
+  } catch (e) { }
+  return null;
+}
+function clearSession() {
+  try { localStorage.removeItem(SKEY); } catch (e) { }
+  S.saved = null;
+}
+function answeredCount(d) {
+  if (!d || !d.res) return 0;
+  return Object.keys(d.res).length;
+}
+
+/* ===================== 主题 ===================== */
+function applyTheme() {
+  const t = store.settings.theme;
+  const dark = t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.documentElement.style.setProperty('--fs', store.settings.fs + 'px');
+}
+try {
+  const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  if (mq) {
+    const onChange = () => { if (store.settings.theme === 'auto') applyTheme(); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+} catch (e) { /* 老 iOS 忽略 */ }
+applyTheme();
+
+/* ===================== 启动 ===================== */
+const C = window.YEK_CORE, CONF = window.YEK_CONF || { examDate: '2026-12-19' };
+let IDX = null;
+const todayISO = C.today();
+const S = { route: '#/home', sess: null, filter: { subj: 'all', ch: 'all', type: 'all', mode: 'all', n: 20 }, lastPick: null, quoteSeed: 0 };
+
+function boot() {
+  window.__YEK_BOOTED = true;
+  IDX = C.index();
+  S.saved = loadSession();
+  if (!location.hash) location.hash = '#/home';
+  route();
+  window.addEventListener('hashchange', route);
+  document.addEventListener('click', onClick);
+}
+function route() {
+  S.route = location.hash || '#/home';
+  if (S.route.indexOf('#/run') !== 0) S.sess = null;
+  render();
+  window.scrollTo(0, 0);
+}
+
+/* ===================== 工具 ===================== */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const pct = r => r == null ? '—' : Math.round(r * 100) + '%';
+const SUBJ_COLOR = { '流病': 'var(--red)', '卫统': 'var(--navy)', '预医': 'var(--green)', '社医': '#8a6a20' };
+const TYPES = ['单选', '多选', '判断', '名解', '论述'];
+const TYPE_LABEL = { '单选': '单选', '多选': '多选', '判断': '判断', '名解': '名词解释', '论述': '分析论述' };
+
+/* ===================== 页面 ===================== */
+function render() {
+  const app = document.getElementById('app');
+  const r = S.route;
+  let html = '';
+  if (r === '#/home') html = viewHome();
+  else if (r === '#/practice') html = viewPractice();
+  else if (r === '#/run') html = viewRun();
+  else if (r === '#/wrong') html = viewWrong();
+  else if (r === '#/stats') html = viewStats();
+  else if (r === '#/review') html = viewReview();
+  else html = viewHome();
+  app.innerHTML = html;
+  document.getElementById('tabbar').classList.toggle('hide', r === '#/run');
+  renderTabs();
+  if (r === '#/run' && S.sess) startTimer(); else stopTimer();
+}
+function renderTabs() {
+  const cur = S.route.indexOf('#/run') === 0 ? '#/practice' : S.route;
+  const items = [['#/home', '☀', '今日'], ['#/practice', '✎', '刷题'], ['#/wrong', '★', '错题'], ['#/stats', '◔', '分析'], ['#/review', '☰', '小结']];
+  document.querySelector('#tabbar .in').innerHTML = items.map(([h, ic, t]) =>
+    `<div class="tab ${cur === h ? 'on' : ''}" data-act="go" data-href="${h}"><b>${ic}</b>${t}</div>`).join('');
+}
+
+/* ---------- 首页 ---------- */
+function viewHome() {
+  if (!S.saved) S.saved = loadSession();
+  const dLeft = C.daysToExam(CONF);
+  const st = C.dayStats(store, todayISO);
+  const streak = C.streak(store, todayISO);
+  const q = C.quoteOf(new Date(), S.quoteOffset || 0);
+  const sk = C.stickerOf(new Date());
+  const plan = C.planFor(todayISO);
+  const goal = 15;
+  const rate = st.rate;
+  const donePct = Math.min(100, Math.round(st.n / goal * 100));
+  const tasks = plan ? plan.items.filter(x => x.chs.length) : [];
+  const taskLabel = plan && plan.lab ? plan.lab : [];
+  return `
+  <div class="hd">
+    <h1>yek一战成硕备考站</h1>
+    <div class="icon-btn" data-act="settings">⚙</div>
+  </div>
+  <div class="cd">
+    <div class="lab">${esc(CONF.examName || '2027 考研初试')} · ${esc((CONF.examDate || '').replace(/-/g, '/'))}</div>
+    <div class="d">D-${dLeft}<small>天</small></div>
+    <div class="sub">已连续打卡 ${streak} 天 · 今日目标 ${goal} 题</div>
+    <div class="stk" style="background:${sk.c}"><div class="e">${sk.e}</div><div class="t">${esc(sk.t)}</div></div>
+  </div>
+
+  <div class="card qc">
+    <div class="tag">TODAY</div>
+    <div class="mini-pill" data-act="nextquote">换一句</div>
+    <div class="en">${esc(q.en.t)}</div>
+    <div class="zh">${esc(q.en.zh)}</div>
+    ${q.en.by ? `<div class="by">— ${esc(q.en.by)}</div>` : ''}
+    <div class="by" style="margin-top:8px">${esc(q.cn.t)}</div>
+  </div>
+
+  ${S.saved ? `<div class="resume">
+      <div class="rl">继续上次练习<span>${S.saved.label ? esc(S.saved.label) + ' · ' : ''}已答 ${answeredCount(S.saved)}/${S.saved.ids.length} 题</span></div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn" style="flex:2" data-act="resume">接着做 →</button>
+        <button class="btn ghost" style="flex:1;font-size:14px" data-act="restart">重新开始</button>
+      </div>
+    </div>` : ''}
+  <div style="margin-top:16px">
+    <button class="btn" data-act="startdaily">开始今日 ${goal} 题</button>
+    <div class="bar"><i style="width:${donePct}%"></i></div>
+    <div class="muted" style="margin-top:6px;text-align:center">今日已做 ${st.n} 题 · 正确率 ${pct(rate)}</div>
+  </div>
+
+  <div class="grid3">
+    <div class="g3"><b style="color:var(--navy)">${st.n}</b><span>已做</span></div>
+    <div class="g3"><b style="color:var(--green)">${pct(rate)}</b><span>正确率</span></div>
+    <div class="g3"><b style="color:var(--red)">${Object.keys(store.wrong).filter(k => !store.wrong[k].mastered).length}</b><span>待清错题</span></div>
+  </div>
+
+  <div class="sec-title">今天的任务</div>
+  <div class="card" style="padding:6px 16px">
+    ${taskLabel.length ? taskLabel.map((t, i) => `<div class="task"><span class="dot" style="background:${['var(--navy)', 'var(--red)', 'var(--green)'][i % 3]}"></span><span>${esc(t)}</span></div>`).join('')
+      : `<div class="task"><span class="dot" style="background:var(--sub)"></span><span>${plan ? '自由复习日（按薄弱章节组卷）' : '今天不在 47 天计划内，按薄弱章节组卷'}</span></div>`}
+  </div>
+
+  <div class="sec-title">快捷刷题</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <span class="pill" data-act="quick" data-mode="weak">薄弱章节 20 题</span>
+    <span class="pill" data-act="quick" data-mode="wrong">错题回炉</span>
+    <span class="pill" data-act="quick" data-mode="new">没做过的新题</span>
+  </div>`;
+}
+
+/* ---------- 刷题设置 ---------- */
+function viewPractice() {
+  const f = S.filter;
+  const chs = f.subj === 'all' ? [] : [...new Set((IDX.bySubj[f.subj] || []).map(q => q.ch))]
+    .map(ch => ({ ch, name: (IDX.bySubj[f.subj].find(q => q.ch === ch) || {}).chName }))
+    .sort((a, b) => a.ch.localeCompare(b.ch));
+  const total = IDX.all.length;
+  return `
+  <div class="hd"><h1>刷题</h1><div class="icon-btn" data-act="settings">⚙</div></div>
+
+  <div class="sec-title">科目</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <span class="pill ${f.subj === 'all' ? 'on' : ''}" data-act="f" data-k="subj" data-v="all">全部 ${total}</span>
+    ${Object.keys(IDX.bySubj).map(s => `<span class="pill ${f.subj === s ? 'on' : ''}" data-act="f" data-k="subj" data-v="${s}">${s} ${IDX.bySubj[s].length}</span>`).join('')}
+  </div>
+
+  ${chs.length ? `<div class="sec-title">章节</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <span class="pill ${f.ch === 'all' ? 'on' : ''}" data-act="f" data-k="ch" data-v="all">全部</span>
+    ${chs.map(c => `<span class="pill ${f.ch === c.ch ? 'on' : ''}" data-act="f" data-k="ch" data-v="${c.ch}">${esc((c.name || c.ch).split(' ')[0])}</span>`).join('')}
+  </div>` : ''}
+
+  <div class="sec-title">题型</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${[['all', '全部'], ['客观', '客观题'], ['主观', '名解/论述'], ['单选', '单选'], ['多选', '多选'], ['判断', '判断']]
+      .map(([v, t]) => `<span class="pill ${f.type === v ? 'on' : ''}" data-act="f" data-k="type" data-v="${v}">${t}</span>`).join('')}
+  </div>
+
+  <div class="sec-title">范围</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${[['all', '全部'], ['new', '没做过'], ['wrong', '错题'], ['weak', '薄弱章节']]
+      .map(([v, t]) => `<span class="pill ${f.mode === v ? 'on' : ''}" data-act="f" data-k="mode" data-v="${v}">${t}</span>`).join('')}
+  </div>
+
+  <div class="sec-title">题量</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${[10, 20, 30, 50].map(n => `<span class="pill ${f.n === n ? 'on' : ''}" data-act="f" data-k="n" data-v="${n}">${n} 题</span>`).join('')}
+  </div>
+
+  <div style="margin-top:22px">
+    <button class="btn" data-act="startfilter">开始刷题</button>
+  </div>`;
+}
+
+/* ---------- 答题 ---------- */
+function viewRun() {
+  const s = S.sess;
+  if (!s) return `<div class="empty">没有进行中的练习。<br><br><button class="btn" data-act="go" data-href="#/home">回首页</button></div>`;
+  const q = s.qs[s.i];
+  if (!q) return viewRunDone();
+  const res = s.res[q.id];
+  const kp = (window.YEK_KP || {})[q.ch];
+  const dots = s.qs.map((_, i) => `<i class="${i < s.i ? 'done' : i === s.i ? 'cur' : ''}"></i>`).join('');
+  let body = '';
+  if (q.type === '单选' || q.type === '多选') {
+    body = q.opts.map((o, i) => {
+      const L = String.fromCharCode(65 + i);
+      let cls = 'opt';
+      if (q.type === '多选' && !res && (s.multi || []).indexOf(L) >= 0) cls += ' sel';
+      if (res) {
+        if (String(q.ans).indexOf(L) >= 0) cls += ' right';
+        else if (res.pick && res.pick.indexOf(L) >= 0) cls += ' wrong';
+      }
+      return `<div class="${cls} ${q.type === '多选' ? 'multi' : ''}" data-act="pick" data-l="${L}">
+        <span class="k">${L}</span><span class="v">${esc(o)}</span></div>`;
+    }).join('');
+    if (q.type === '多选' && !res) body += `<button class="btn" data-act="submitmulti" style="margin-top:6px">提交（已选 ${(s.multi || []).length} 项）</button>`;
+  } else if (q.type === '判断') {
+    body = ['T', 'F'].map(v => {
+      const L = v === 'T' ? '正确' : '错误';
+      let cls = 'opt';
+      if (res) { if (q.ans === v) cls += ' right'; else if (res.pick === v) cls += ' wrong'; }
+      return `<div class="${cls}" data-act="pick" data-l="${v}"><span class="k">${v === 'T' ? '√' : '×'}</span><span class="v">${L}</span></div>`;
+    }).join('');
+  } else if (res) {
+    body = `<div class="card" style="padding:14px 16px;white-space:pre-wrap;font-size:14px;line-height:1.7">${esc(res.txt) || '<span class="muted">（这一题你没有写）</span>'}</div>`;
+  } else {
+    body = `<textarea class="ta" id="ta" placeholder="自己先默写一遍：写不出就空着提交，系统会按参考答案的关键点给你算覆盖率"></textarea>
+      <div class="muted" style="margin:8px 0 10px">提交后自动对照参考答案，告诉你答到了哪几个关键点、漏了哪几个。</div>
+      <button class="btn" data-act="submitself">提交，看我答到几个点</button>`;
+  }
+  return `
+  <div class="ptop">
+    <div class="icon-btn" data-act="quit">←</div>
+    <div class="muted">${esc(q.subj)} · ${esc((q.chName || '').split(' ')[0])}</div>
+    <div class="muted"><span id="timer" style="font-variant-numeric:tabular-nums">00:00</span>　${s.i + 1}/${s.qs.length}</div>
+  </div>
+  <div class="dots">${dots}</div>
+  <div class="chips">
+    <span class="chip cat">${TYPE_LABEL[q.type]}</span>
+    ${q.ny > 1 ? `<span class="chip">${(q.ys || []).slice(0, 3).join(' · ')} 考过 ${q.ny} 次</span>` : (q.ys && q.ys[0] ? `<span class="chip">${q.ys[0]}</span>` : '')}
+  </div>
+  ${(window.YEK_QDETAIL || {})[q.id] && window.YEK_QDETAIL[q.id].w ? `<div class="warnbox">⚠ ${esc(window.YEK_QDETAIL[q.id].w)}</div>` : ''}
+  <div class="qtext">${esc(q.stem)}</div>
+  ${body}
+  ${res ? analysis(q, res, kp) + `<div style="margin-top:16px"><button class="btn" data-act="next">${s.i + 1 < s.qs.length ? '下一题' : '完成，看小结'}</button></div>` : ''}`;
+}
+function analysis(q, res, kp) {
+  const isSub = (q.type === '名解' || q.type === '论述');
+  const D = (window.YEK_DETAIL || {})[q.ch] || {};
+  const QD = (window.YEK_QDETAIL || {})[q.id] || {};
+  const ansText = isSub ? '参考答案' :
+    q.type === '判断' ? (q.ans === 'T' ? '正确' : '错误') : q.ans;
+  const mine = isSub
+    ? (res.grade ? '覆盖率 ' + Math.round((res.grade.rate || 0) * 100) + '%' : '')
+    : (q.type === '判断' ? (res.pick === 'T' ? '正确' : '错误') : (res.pick || '未选'));
+
+  // 选项逐条解析（有则展示，没有则提示）
+  let optBlock = '';
+  if (q.type === '判断') {
+    const O = QD.o || {};
+    optBlock = `<h4>选项解析（判断题：为什么“正确”错、为什么“错误”对）</h4><div class="optnote">` +
+      [['T', '√', '「正确」'], ['F', '×', '「错误」']].map(function (r) {
+        const k = r[0], ico = r[1], lab = r[2], right = (q.ans === k);
+        return `<div class="optrow ${right ? 'r' : 'w'}"><span class="lt">${ico}</span>
+          <span class="ot"><b>${lab}${right ? '　← 本题正确答案' : ''}</b>${O[k] ? `<br><em>${esc(O[k])}</em>` : ''}</span></div>`;
+      }).join('') + `</div>`;
+  } else if (!isSub) {
+    const letters = q.opts.map((_, i) => String.fromCharCode(65 + i));
+    const hasO = QD.o && Object.keys(QD.o).length;
+    optBlock = `<h4>选项解析</h4>`;
+    if (hasO) {
+      optBlock += `<div class="optnote">` + letters.map((L, i) => {
+        const right = String(q.ans).indexOf(L) >= 0;
+        const txt = QD.o[L] || '';
+        return `<div class="optrow ${right ? 'r' : 'w'}">
+          <span class="lt">${L}</span>
+          <span class="ot"><b>${esc(q.opts[i])}</b>${txt ? `<br><em>${esc(txt)}</em>` : ''}</span></div>`;
+      }).join('') + `</div>`;
+    } else {
+      optBlock += `<p class="muted">这道题还没写逐项解析。正确项是 <b>${esc(q.ans)}</b>：${esc(q.opts[String(q.ans).charCodeAt(0) - 65] || '')}。
+        <span style="color:var(--red)">（逐项解析按批次补）</span></p>
+        <button class="btn ghost" style="margin-top:8px;font-size:13px;padding:10px 0" data-act="copyid" data-id="${q.id}">复制题号，发给开发者补逐项解析</button>`;
+    }
+  }
+
+  // 主观题：命中 / 漏点
+  let gBlock = '';
+  if (isSub && res.grade) {
+    const g = res.grade;
+    gBlock = `<h4>你答到了几个点</h4>
+      <div class="gbar"><i style="width:${Math.round((g.rate || 0) * 100)}%"></i></div>
+      <p class="muted">共 ${g.total} 个关键点，命中 ${g.hit.length} 个（${Math.round((g.rate || 0) * 100)}%）</p>
+      ${g.hit.length ? `<p style="font-size:13px"><b style="color:var(--green)">✓ 答到：</b>${g.hit.map(esc).join('；')}</p>` : ''}
+      ${g.miss.length ? `<p style="font-size:13px"><b style="color:var(--red)">✗ 漏掉：</b>${g.miss.map(esc).join('；')}</p>` : ''}`;
+  }
+
+  // 教材定位
+  let loc = '';
+  if (D.sec || D.page || D.kp) {
+    loc = `<h4>教材定位</h4><p>${esc(q.chName || '')}${D.sec ? ' · ' + esc(D.sec) : ''}${D.page ? ' · ' + esc(D.page) : ''}
+      ${D.kp && D.kp.length ? '<br><span class="muted">知识点：' + D.kp.map(esc).join(' / ') + '</span>' : ''}</p>`;
+  }
+  // 必记关键词 + 口诀
+  let kw = '';
+  if (D.must && D.must.length) kw += `<h4>这一章必须记住的词</h4><p class="kwline">${D.must.map(x => `<span class="kw">${esc(x)}</span>`).join('')}</p>`;
+  if (D.mnem) kw += `<div class="mnem"><b>助记：</b>${esc(D.mnem)}</div>`;
+
+  // 易混关联（按本题实时算，每题不同）
+  const conf = window.YEK_APP && YEK_APP.idx ? C.confuseOf(q, YEK_APP.idx()) : [];
+  let cf = '';
+  if (conf.length) {
+    cf = `<h4>易混对比（这道题最容易和下面几道搞混）</h4>` + conf.map(c => `
+      <div class="confbox">
+        <div class="cq">${esc(c.q.stem.slice(0, 60))}　<b>答案 ${esc(c.q.type === '判断' ? (c.q.ans === 'T' ? '正确' : '错误') : c.q.ans)}</b></div>
+        <div class="cw">${esc(c.why)}</div>
+      </div>`).join('');
+  } else if (D.conf && D.conf.length) {
+    cf = `<h4>易混对比</h4>` + D.conf.map(c => `<div class="confbox"><div class="cq">${esc(c.a)}</div><div class="cw">${esc(c.why)}</div></div>`).join('');
+  }
+
+  return `
+  <div class="card ana ${res.ok ? '' : 'bad'}">
+    <div class="res">${res.ok ? '√ ' + (isSub ? '要点答够了' : '答对了') : (res.half ? '△ 差一点' : '× ' + (isSub ? '要点漏太多' : '答错了'))}
+      <em>${isSub ? '' : '正确答案 ' + esc(ansText)}</em><em>${isSub ? '' : '你的选择 ' + esc(mine)}${isSub ? esc(mine) : ''}</em></div>
+    ${isSub ? gBlock : ''}
+    ${q.note ? `<h4>${isSub ? '参考答案' : '本题解析'}</h4><p>${esc(q.note)}</p>` : ''}
+    ${(!q.note && QD.a) ? `<h4>本题精析</h4><p>${esc(QD.a)}</p>` : ''}
+    ${(q.note && QD.a && !isSub) ? `<p class="muted" style="margin-top:6px">${esc(QD.a)}</p>` : ''}
+    ${optBlock}
+    ${loc}
+    ${kw}
+    ${cf}
+    ${kp && kp.core ? `<h4>本章其他要点</h4><ul>${kp.core.slice(0, 4).map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    ${kp && kp.trap ? `<div class="trap">本章易错：${kp.trap.map(esc).join('　')}</div>` : ''}
+    ${res.addedWrong ? `<div class="muted" style="margin-top:10px">已加入错题本</div>` : ''}
+  </div>`;
+}
+function viewRunDone() {
+  const s = S.sess;
+  const n = s.qs.length; let c = 0; s.qs.forEach(q => { const r = s.res[q.id]; if (r && r.ok) c++; });
+  const mins = Math.max(1, Math.round((Date.now() - s.t0) / 60000));
+  return `<div class="hd"><h1>本组完成</h1></div>
+  <div class="card" style="padding:22px;text-align:center">
+    <div style="font-size:44px;font-weight:800;color:var(--navy)">${c}/${n}</div>
+    <div class="muted" style="margin-top:4px">正确率 ${pct(n ? c / n : null)} · 用时 ${mins} 分钟</div>
+  </div>
+  <div style="margin-top:16px"><button class="btn" data-act="go" data-href="#/review">看今日小结</button></div>
+  <div style="margin-top:10px"><button class="btn ghost" data-act="go" data-href="#/home">回首页</button></div>`;
+}
+
+/* ---------- 错题 ---------- */
+function viewWrong() {
+  const list = Object.keys(store.wrong).filter(k => !store.wrong[k].mastered)
+    .map(k => ({ q: IDX.byId[k], w: store.wrong[k] })).filter(x => x.q)
+    .sort((a, b) => b.w.n - a.w.n || (b.w.last || '').localeCompare(a.w.last || ''));
+  const done = Object.keys(store.wrong).filter(k => store.wrong[k].mastered).length;
+  if (!list.length) return `<div class="hd"><h1>错题本</h1></div>
+    <div class="empty">还没有错题<br><br>${done ? `已掌握 ${done} 道` : '继续加油'}</div>
+    <div style="margin-top:10px"><button class="btn ghost" data-act="go" data-href="#/home">回首页</button></div>`;
+  return `<div class="hd"><h1>错题本</h1><div class="muted">${list.length} 道待清 ${done ? '· 已掌握 ' + done : ''}</div></div>
+  <div style="margin-bottom:12px"><button class="btn" data-act="redoall">重做全部 ${list.length} 道</button></div>
+  ${list.map(({ q, w }) => `
+    <div class="card item">
+      <div class="top"><span>${esc(q.subj)} · ${esc((q.chName || '').split(' ')[0])} · ${q.type}</span>
+        <span class="flag">错 ${w.n} 次</span></div>
+      <div class="txt">${esc(q.stem.length > 74 ? q.stem.slice(0, 74) + '…' : q.stem)}</div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <span class="pill" data-act="redoone" data-id="${q.id}">重做</span>
+        <span class="pill" data-act="master" data-id="${q.id}">标为已掌握</span>
+      </div>
+    </div>`).join('')}`;
+}
+
+/* ---------- 分析 ---------- */
+function viewStats() {
+  const ss = C.statsBySubj(IDX, store);
+  const ts = C.statsByType(IDX, store);
+  const weak = C.weakChapters(store, 12, IDX);
+  const totalSeen = Object.keys(store.q).length;
+  return `<div class="hd"><h1>掌握度分析</h1><div class="muted">已做 ${totalSeen}/${IDX.all.length}</div></div>
+
+  <div class="sec-title">四科</div>
+  <div class="card" style="padding:16px 18px">
+    ${ss.map(s => `<div class="wk"><div class="h"><span>${s.subj}</span><span class="muted">${s.seen}/${s.total} 题 · ${pct(s.rate)}</span></div>
+      <div class="t"><i style="width:${s.rate == null ? 0 : Math.round(s.rate * 100)}%;background:${SUBJ_COLOR[s.subj] || 'var(--navy)'}"></i></div></div>`).join('')}
+  </div>
+
+  <div class="sec-title">题型</div>
+  <div class="card" style="padding:16px 18px">
+    ${ts.length ? ts.map(t => `<div class="wk"><div class="h"><span>${TYPE_LABEL[t.type] || t.type}</span><span class="muted">${t.a} 次 · ${pct(t.rate)}</span></div>
+      <div class="t"><i style="width:${Math.round((t.rate || 0) * 100)}%;background:var(--navy)"></i></div></div>`).join('') : '<div class="muted">还没有数据</div>'}
+  </div>
+
+  <div class="sec-title">最该补的章节（正确率从低到高）</div>
+  ${weak.length ? `<div class="card" style="padding:8px 18px">
+    ${weak.map(w => `<div class="wk" style="padding:8px 0"><div class="h"><span>${w.subj} · ${esc((w.chName || '').split(' ')[0])}</span>
+      <span class="muted">${w.c}/${w.a} · ${pct(w.rate)}</span></div>
+      <div class="t"><i style="width:${Math.round(w.rate * 100)}%;background:${w.rate < .6 ? 'var(--red)' : '#D6AA50'}"></i></div></div>`).join('')}
+  </div><div style="margin-top:12px"><button class="btn ghost" data-act="quick" data-mode="weak">刷这些薄弱章节</button></div>`
+      : `<div class="empty">再做几题就能看出薄弱点了（每章至少 2 次）</div>`}`;
+}
+
+/* ---------- 小结 ---------- */
+function viewReview() {
+  const d = C.dayStats(store, todayISO);
+  const w = C.weekStats(store, todayISO);
+  const weak = C.weakChapters(store, 3, IDX);
+  const plan = C.planFor(todayISO);
+  const tm = new Date(Date.now() + 864e5); const planT = C.planFor(C.iso(tm));
+  const maxN = Math.max(1, ...w.days.map(x => x.n));
+  const sug = [];
+  if (d.n === 0) sug.push('今天还没开张——先做 10 道，别管对错，激活一下。');
+  else if (d.rate != null && d.rate < .55) sug.push('今天正确率偏低，今晚花 10 分钟把错题的“为什么”抄一遍。');
+  else if (d.rate != null && d.rate >= .8) sug.push('今天状态很好，可以加练一组薄弱章节。');
+  if (weak.length) sug.push('最该补：' + weak.map(x => x.chName.split(' ')[0]).join('、') + '。');
+  if (planT && planT.lab) sug.push('明天计划：' + planT.lab.join('　'));
+  if (Object.keys(store.wrong).filter(k => !store.wrong[k].mastered).length > 20) sug.push('错题积压超过 20 道，抽 20 分钟集中清一次。');
+  return `<div class="hd"><h1>小结</h1><div class="muted">${todayISO}</div></div>
+
+  <div class="sec-title">今天</div>
+  <div class="grid3">
+    <div class="g3"><b style="color:var(--navy)">${d.n}</b><span>做题</span></div>
+    <div class="g3"><b style="color:var(--green)">${pct(d.rate)}</b><span>正确率</span></div>
+    <div class="g3"><b style="color:var(--red)">${Object.keys(store.wrong).filter(k => !store.wrong[k].mastered).length}</b><span>待清错题</span></div>
+  </div>
+
+  <div class="sec-title">最近 7 天</div>
+  <div class="card" style="padding:16px 18px">
+    <div class="bars" data-bars='${JSON.stringify(w.days.map(x => x.n))}'>
+      ${w.days.map(x => `<div class="b"><i style="height:${Math.max(3, Math.round(x.n / maxN * 70))}px"></i><span>${x.d.slice(8)}</span></div>`).join('')}
+    </div>
+    <div class="muted" style="text-align:center;margin-top:6px">本周 ${w.n} 题 · 正确率 ${pct(w.rate)}</div>
+  </div>
+
+  <div class="sec-title">给你的建议</div>
+  <div class="card" style="padding:14px 18px">
+    ${sug.map(s => `<div class="task"><span class="dot" style="background:var(--green)"></span><span>${esc(s)}</span></div>`).join('')}
+  </div>
+
+  <div class="sec-title">导出 / 备份</div>
+  <div class="card" style="padding:14px 18px">
+    <div class="muted" style="margin-bottom:10px">换设备或清缓存前先导出一份，下次粘回去就能恢复进度。</div>
+    <button class="btn ghost" data-act="export">导出进度 JSON</button>
+    <div style="height:8px"></div>
+    <button class="btn ghost" data-act="import">导入进度</button>
+  </div>`;
+}
+function drawBars() { }
+
+/* ===================== 交互 ===================== */
+function onClick(e) {
+  const hit = e.target.closest ? e.target.closest('[data-act]') : null;
+  if (!hit) return;
+  const act = hit.dataset.act;
+  const S_ = S.sess;
+  switch (act) {
+    case 'go': location.hash = hit.dataset.href; break;
+    case 'settings': openSettings(); break;
+    case 'nextquote': S.quoteOffset = (S.quoteOffset || 0) + 1; render(); break;
+    case 'f': {
+      const k = hit.dataset.k, v = hit.dataset.v;
+      S.filter[k] = (k === 'n') ? +v : v;
+      if (k === 'subj') S.filter.ch = 'all';
+      render(); break;
+    }
+    case 'startdaily': startDaily(); break;
+    case 'quick': startQuick(hit.dataset.mode); break;
+    case 'startfilter': startFiltered(); break;
+    case 'pick': pick(hit.dataset.l); break;
+    case 'submitmulti': submitMulti(); break;
+    case 'submitself': submitSelf(); break;
+    case 'next': nextQ(); break;
+    case 'quit':
+      if (S_ && S_.i > 0 && !confirm('退出本组练习？\n进度会保存，回来可以从这道题接着做。')) break;
+      saveSession(); stopTimer(); location.hash = '#/home'; break;
+    case 'master':
+      if (store.wrong[hit.dataset.id]) { store.wrong[hit.dataset.id].mastered = true; save(); render(); }
+      break;
+    case 'redoone': startIds([hit.dataset.id]); break;
+    case 'redoall': startIds(Object.keys(store.wrong).filter(k => !store.wrong[k].mastered)); break;
+    case 'copyid': {
+      const line = hit.dataset.id + ' ' + (S.sess && S.sess.qs[S.sess.i] ? S.sess.qs[S.sess.i].stem.slice(0, 40) : '');
+      const done = () => alert('已复制：' + line + '\n发给开发者即可补上这道题的逐项解析。');
+      if (navigator.clipboard) navigator.clipboard.writeText(line).then(done).catch(() => prompt('复制下面这行：', line));
+      else prompt('复制下面这行：', line);
+      break;
+    }
+    case 'resume': resumeSession(); break;
+    case 'restart': {
+      if (!confirm('清掉这组的作答记录，从第 1 题重新开始？')) break;
+      const d = S.saved || loadSession();
+      if (!d) { alert('没有可重新开始的练习。'); break; }
+      d.res = {}; d.i = 0; d.tAcc = 0; d.multi = [];
+      S.saved = d;
+      resumeSession();
+      break;
+    }
+    case 'export': exportJSON(); break;
+    case 'import': importJSON(); break;
+    case 'repair':
+      try { const r = JSON.parse(sessionStorage.getItem('yek.repair') || 'null'); if (r) { store = r; save(); applyTheme(); render(); } } catch (err) { }
+      break;
+    default: break;
+  }
+}
+
+/* ---------- 计时器 ---------- */
+let TICK = null;
+function fmt(ms) {
+  const t = Math.max(0, Math.floor(ms / 1000));
+  const m = String(Math.floor(t / 60)).padStart(2, '0');
+  const ss = String(t % 60).padStart(2, '0');
+  return m + ':' + ss;
+}
+function startTimer() {
+  stopTimer();
+  TICK = setInterval(() => {
+    const box = document.getElementById('timer');
+    if (!box || !S.sess) { stopTimer(); return; }
+    box.textContent = fmt(Date.now() - S.sess.t0);
+  }, 1000);
+}
+function stopTimer() { if (TICK) { clearInterval(TICK); TICK = null; } }
+
+/* ---------- 恢复上次练习 ---------- */
+function resumeSession() {
+  const d = S.saved || loadSession();
+  if (!d) { alert('没有可继续的练习。'); return; }
+  const qs = d.ids.map(id => IDX.byId[id]).filter(Boolean);
+  if (!qs.length) { clearSession(); render(); alert('原题已不在题库中，已清除该存档。'); return; }
+  // 定位到“最后一道做完的题”
+  let pos = Math.min(d.i || 0, qs.length - 1);
+  for (let k = qs.length - 1; k >= 0; k--) {
+    if (d.res && d.res[qs[k].id]) { pos = k; break; }
+  }
+  S.sess = { qs, i: pos, res: d.res || {}, t0: Date.now() - (d.tAcc || 0), multi: d.multi || [], label: d.label || '' };
+  S.route = '#/run';
+  if (location.hash !== '#/run') location.hash = '#/run';
+  render();
+}
+
+/* ---------- 开始练习 ---------- */
+function begin(qs) {
+  if (!qs.length) { alert('这个条件下没有题。\n试试把「范围」改成“全部”、或换一个科目。'); return; }
+  S.sess = { qs, i: 0, res: {}, t0: Date.now(), multi: [], label: S._label || '' };
+  S.route = '#/run';
+  saveSession();
+  if (location.hash !== '#/run') location.hash = '#/run';
+  render();
+}
+function startDaily() { begin(C.pickDaily(IDX, store, todayISO, 15)); }
+function startQuick(mode) {
+  let qs = C.pickFiltered(IDX, store, { mode, n: 20, seed: Date.now() });
+  if (!qs.length && mode === 'weak') {
+    alert('还看不出薄弱章节（每章至少要做 2 题才有数据）。先给你 20 道没做过的新题。');
+    qs = C.pickFiltered(IDX, store, { mode: 'new', n: 20, seed: Date.now() });
+  }
+  if (!qs.length && mode === 'wrong') {
+    alert('错题本现在是空的 👍 给你 20 道没做过的新题。');
+    qs = C.pickFiltered(IDX, store, { mode: 'new', n: 20, seed: Date.now() });
+  }
+  begin(qs);
+}
+function startFiltered() { begin(C.pickFiltered(IDX, store, Object.assign({}, S.filter, { seed: Date.now() }))); }
+function startIds(ids) {
+  const qs = C.shuffle(ids.map(id => IDX.byId[id]).filter(Boolean), Date.now());
+  begin(qs);
+}
+/* ---------- 作答 ---------- */
+function pick(L) {
+  const s = S.sess; const q = s.qs[s.i];
+  if (!q || s.res[q.id]) return;
+  if (q.type === '多选') {
+    s.multi = s.multi || [];
+    const i = s.multi.indexOf(L);
+    if (i >= 0) s.multi.splice(i, 1); else s.multi.push(L);
+    render(); return;
+  }
+  commit(L);
+}
+function submitMulti() {
+  const s = S.sess; const q = s.qs[s.i];
+  if (!s.multi || !s.multi.length) { alert('至少选一项'); return; }
+  commit(s.multi.slice().sort().join(''));
+}
+function submitSelf() { const t = document.getElementById('ta'); S._txt = t ? t.value : ''; commit('__text__'); }
+function commit(resp) {
+  const s = S.sess; const q = s.qs[s.i];
+  const isSub = (q.type === '名解' || q.type === '论述');
+  let ok, half, grade = null;
+  if (isSub) {
+    grade = C.gradeSubjective(q, S._txt || '');
+    ok = grade.level === 'good'; half = grade.level === 'mid';
+  } else {
+    ok = C.judge(q, resp); half = C.half(q, resp);
+  }
+  const pickStr = isSub ? (S._txt || '') : resp;
+  const st = store.q[q.id] || { a: 0, c: 0 };
+  st.a++; if (ok) st.c++;
+  st.d = todayISO; st.t = Date.now();
+  store.q[q.id] = st;
+  let addedWrong = false;
+  if (!ok) {
+    const w = store.wrong[q.id] || { n: 0 };
+    w.n++; w.last = todayISO; w.mastered = false;
+    store.wrong[q.id] = w; addedWrong = true;
+  } else if (store.wrong[q.id]) {
+    store.wrong[q.id].mastered = true;
+  }
+  store.log.push({ t: Date.now(), d: todayISO, id: q.id, ok: ok ? 1 : 0 });
+  if (store.log.length > 4000) store.log = store.log.slice(-4000);
+  s.res[q.id] = { ok, half, pick: pickStr, addedWrong, txt: S._txt || '', grade }; S._txt = '';
+  s.multi = [];
+  save(); saveSession(); render();
+}
+function nextQ() {
+  const s = S.sess;
+  s.multi = [];
+  if (s.i + 1 >= s.qs.length) { s.i = s.qs.length; clearSession(); render(); }
+  else { s.i++; saveSession(); render(); }
+}
+
+/* ---------- 设置 ---------- */
+function openSettings() {
+  const s = store.settings;
+  const box = document.getElementById('sheet');
+  box.innerHTML = `<div class="sheet" data-act="closesheet">
+    <div class="bd" data-stop="1">
+      <div style="font-size:16px;font-weight:700;margin-bottom:8px">设置</div>
+      <div class="row"><span>主题</span><div class="seg">
+        ${[['auto', '跟随系统'], ['light', '浅色'], ['dark', '深色']].map(([v, t]) =>
+    `<span class="${s.theme === v ? 'on' : ''}" data-act="theme" data-v="${v}">${t}</span>`).join('')}
+      </div></div>
+      <div class="row"><span>字号</span><div class="seg">
+        ${[14, 16, 18].map(v => `<span class="${s.fs === v ? 'on' : ''}" data-act="fs" data-v="${v}">${v}</span>`).join('')}
+      </div></div>
+      <div class="row"><span>题库</span><span class="muted">${IDX.all.length} 题</span></div>
+      <div class="row" style="align-items:flex-start;flex-direction:column;gap:4px">
+        <span>添加到主屏幕</span>
+        <span class="muted" style="font-size:12px;line-height:1.6">iPhone：Safari 打开本站 → 底部分享按钮 → 「添加到主屏幕」<br>安卓：Chrome 右上角 ⋮ → 「添加到主屏幕 / 安装应用」</span>
+      </div>
+      <div class="row"><span>清空所有记录</span><span class="pill" data-act="reset" style="color:var(--red);border-color:var(--red)">清空</span></div>
+      <div style="margin-top:14px"><button class="btn ghost" data-act="closesheet">关闭</button></div>
+    </div></div>`;
+  box.querySelector('.bd').addEventListener('click', e => e.stopPropagation());
+  box.querySelector('.sheet').addEventListener('click', e => {
+    const t = e.target.closest('[data-act]'); if (!t) return;
+    const a = t.dataset.act;
+    if (a === 'closesheet') { box.innerHTML = ''; }
+    if (a === 'theme') { store.settings.theme = t.dataset.v; save(); applyTheme(); openSettings(); }
+    if (a === 'fs') { store.settings.fs = +t.dataset.v; save(); applyTheme(); openSettings(); }
+    if (a === 'reset') {
+      if (confirm('确定清空做题记录？不可撤销。')) { store = JSON.parse(JSON.stringify(DEF)); save(); box.innerHTML = ''; applyTheme(); render(); }
+    }
+  });
+}
+/* ---------- 导入导出 ---------- */
+function exportJSON() {
+  const txt = JSON.stringify(store);
+  const blob = new Blob([txt], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'yek-progress-' + todayISO + '.json';
+  a.click();
+}
+function importJSON() {
+  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json';
+  inp.onchange = () => {
+    const f = inp.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const o = JSON.parse(r.result);
+        if (!o || o.v !== 2) throw 0;
+        store = o; save(); applyTheme(); render(); alert('导入成功');
+      } catch (e) { alert('文件格式不对'); }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
+}
+
+/* 全局错误提示：任何未捕获异常都显示在页面顶部，方便定位 */
+window.onerror = function (msg, src, line, col) {
+  const b = document.getElementById('errbar');
+  if (!b) return;
+  b.style.display = 'block';
+  b.textContent = '出错了：' + msg + '（第 ' + line + ' 行）\n把这一行截图发给开发者即可。';
+};
+window.addEventListener('unhandledrejection', function (e) {
+  const b = document.getElementById('errbar');
+  if (b) { b.style.display = 'block'; b.textContent = '异步错误：' + (e.reason && e.reason.message || e.reason); }
+});
+
+/* 注册 Service Worker（仅 http/https；file:// 或局域网 http 不支持时静默跳过） */
+(function () {
+  if (!('serviceWorker' in navigator)) return;
+  if (!/^https?:$/.test(location.protocol)) return;
+  navigator.serviceWorker.register('sw.js').catch(function () { });
+})();
+
+/* 调试出口：控制台可看状态（不影响功能） */
+window.YEK_APP = { S, store: () => store, idx: () => IDX };
+
+/* ===================== 加载题库后启动 ===================== */
+(function () {
+  const files = window.YEK_FILES || [];
+  let n = 0;
+  const done = () => { if (++n === files.length) { try { boot(); } catch (e) { document.getElementById('app').innerHTML = '<pre style="white-space:pre-wrap;font-size:12px">启动失败：' + e.message + '</pre>'; } } };
+  if (!files.length) { boot(); return; }
+  files.forEach(f => {
+    const s = document.createElement('script');
+    s.src = 'data/' + f;
+    s.onload = done;
+    s.onerror = () => { document.getElementById('app').innerHTML = '题库文件加载失败：' + f; };
+    document.head.appendChild(s);
+  });
+})();
+</script>
+</body>
+</html>
